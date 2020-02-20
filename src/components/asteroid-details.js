@@ -15,9 +15,7 @@ class AsteroidDetails extends Component {
 
 }
 
-// function mapStateToProps() {
-//   return {  };
-// }
+
 
 
 export default AsteroidDetails //connect(mapStateToProps)(AsteroidDetails);

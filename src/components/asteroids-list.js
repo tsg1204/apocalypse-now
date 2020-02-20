@@ -6,21 +6,27 @@ import _ from "lodash";
 import { fetchAsteroids } from "../actions";
 
 class AsteroidsList extends Component {
+	constructor() {
+		super()
+
+
+	}
+	
 
 	renderList() {
 		console.log('from renderList')
 		 return _.map(this.props.asteroids, ast => {
 	      return (
-	        <li className="list-group-item" key={ast.id}>
-	            
-				<Link to={`/asteroids/${ast.id}`}>
-					{ast.name} 
-					Orbiting body: {ast.close_approach_data[0].orbiting_body}
-					 Is potentially hazardous asteroid: 
-					{ast.is_potentially_hazardous_asteroid ? ' Yes' : ' No'}
-				</Link>
-
-	        </li>
+	      		<tr key={ast.id}>
+	        	<td key={ast.id}>	            
+					<Link to={`/asteroids/${ast.id}`}>
+						{ast.name}	
+					</Link>
+				</td>
+				<td>
+					{ast.is_potentially_hazardous_asteroid ? '      Yes' : '     No'}
+				</td>
+				</tr>
 	      );
 	    });
 	}
@@ -29,9 +35,19 @@ class AsteroidsList extends Component {
 
     return (
     	<div><h4>Asteroids List</h4>
-	        <ul className="list-group">
+	        {/*<ul className="list-group">
+	        	<li className="list-group-item">Name       | Is potentially hazardous asteroid?</li>
 	          {this.renderList()}
-	        </ul>
+	        </ul>*/}
+	        <table >
+	        	<tbody>
+	        		<tr>
+	        			<td>Name</td>
+	        			<td>Is potentially hazardous asteroid?</td>
+	        		</tr>
+	        		{this.renderList()}
+	        	</tbody>
+	        </table>
     	</div>
 
     );
