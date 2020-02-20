@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { fetchAsteroids } from "../actions";
 
+
 class AsteroidsList extends Component {
   componentDidMount() {
     //const { id } = this.props.match.params;
@@ -13,7 +14,7 @@ class AsteroidsList extends Component {
 
 
   render() {
-  	
+
     const { asteroids } = this.props;
     console.log(asteroids)
     //if (!post) {

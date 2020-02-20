@@ -8,7 +8,7 @@ import promise from "redux-promise";
 import reducers from "./reducers/index";
 import AsteroidsList from "./components/asteroids-list";
 //import AsteroidDetails from "./components/asteroid-details";
-import SearchBar from "./components/asteroids-search";
+import HomePage from "./components/asteroids-search";
 
 import 'bootstrap/dist/css/bootstrap.css'
 
@@ -21,7 +21,7 @@ ReactDOM.render(
         <Switch>
           <Route path="/asteroids" component={AsteroidsList}/>
           {/*<Route path="/asteroids/:id" component={AsteroidDetails} />*/}
-          <Route  exact path="/" component={SearchBar}/>
+          <Route  exact path="/" component={HomePage}/>
         </Switch>
       </div>
     </BrowserRouter>

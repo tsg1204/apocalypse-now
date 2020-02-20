@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { fetchAsteroids, fetchDailyImage} from "../actions";
 
 
-class SearchBar extends Component {
+class HomePage extends Component {
   constructor(props) {
     super(props);
 
@@ -14,12 +14,11 @@ class SearchBar extends Component {
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
-    this.onImageClick = this.onImageClick.bind(this);
+
   }
 
   componentDidMount() {
     this.props.fetchDailyImage();
-    console.log(this.props.fetchDailyImage.url);
   }
 
   onInputChange(event) {
@@ -34,13 +33,13 @@ class SearchBar extends Component {
     this.setState({ startDate: '' });
   }
 
-  onImageClick(event){
-    event.preventDefault();
-
-
-  }
 
   render() {
+    const { image } = this.props;
+
+    if (!image) {
+      return <div>Loading...</div>;
+    }
 
     return (
       <div>
@@ -57,7 +56,12 @@ class SearchBar extends Component {
               </button>
               </span>
           </form>
-          <img src={this.props.image.url} onClick={this.onImageClick}></img>
+          <div className="container">
+            <div className="top-right">Today's Nasa Image: {this.props.image.explanation}
+              <img src={this.props.image.url}>
+              </img>
+            </div>
+          </div>
       </div>
 
     );
@@ -75,38 +79,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SearchBar);
-
-
-
-
-
-
-
-// class AsteroidsSearch extends Component {
-//   componentDidMount() {
-//     this.props.fetchAsteroids();
-//   }
-
-//   render() {
-//     return _.map(this.props.asteroids, asteroid => {
-//       return (
-//         <li className="list-group-item" key={asteroids.id}>
-//           <Link to={`/asteroids/${asteroids.id}`}>
-//             {asteroids.name}
-//           </Link>
-//         </li>
-//       );
-//     });
-//   }
-// }
-
-// function mapStateToProps(state) {
-//   return { asteroids: state.asteroids};
-// }
-
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ fetchAsteroids }, dispatch);
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(AsteroidsSearch);
+)(HomePage);
