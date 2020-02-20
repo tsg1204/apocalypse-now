@@ -2,7 +2,7 @@ import _ from "lodash";
 import { FETCH_ASTEROIDS, FETCH_DAILY_IMAGE } from "../actions";
 
 export default function(state = [], action) {
-	console.log(action)
+	// console.log(action)
 
   switch (action.type) {
     case FETCH_ASTEROIDS:

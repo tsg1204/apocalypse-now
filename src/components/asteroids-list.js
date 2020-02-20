@@ -8,15 +8,15 @@ import { fetchAsteroids } from "../actions";
 class AsteroidsList extends Component {
 
 	renderList() {
-		console.log('from renderList')
+		// console.log('from renderList')
 		 return _.map(this.props.asteroids, ast => {
 	      return (
 	        <li className="list-group-item" key={ast.id}>
-	            
+
 				<Link to={`/asteroids/${ast.id}`}>
-					{ast.name} 
+					{ast.name}
 					Orbiting body: {ast.close_approach_data[0].orbiting_body}
-					 Is potentially hazardous asteroid: 
+					 Is potentially hazardous asteroid:
 					{ast.is_potentially_hazardous_asteroid ? ' Yes' : ' No'}
 				</Link>
 
