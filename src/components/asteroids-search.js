@@ -4,13 +4,14 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link } from "react-router-dom";
 import { fetchAsteroids } from "../actions";
+import AsteroidsList from "./asteroids-list";
 
 
 class SearchBar extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { startDate: '' };
+    this.state = { startDate: '2019-12-12' };
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -22,28 +23,32 @@ class SearchBar extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    console.log(this.state)
+    //console.log(this.state)
     // We need to go and fetch asteroid data
     this.props.fetchAsteroids(this.state.startDate);
+    this.props.history.push('/asteroids');
     this.setState({ startDate: '' });
   }
 
   render() {
 
     return (
-      <form onSubmit={this.onFormSubmit} className="input-group">
-        <input
-          placeholder="Enter your date ex. YYYY-MM-DD"
-          className="form-control"
-          value={this.state.startDate}
-          onChange={this.onInputChange}
-        />
-        <span className="input-group-btn">
-          <button type="submit" className="btn btn-secondary">
-            Submit
-          </button>
-        </span>
-      </form>
+      <div>
+        <form onSubmit={this.onFormSubmit} className="input-group">
+          <input
+            placeholder="Enter your date ex. YYYY-MM-DD"
+            className="form-control"
+            value={this.state.startDate}
+            onChange={this.onInputChange}
+          />
+          <span className="input-group-btn">
+            <button type="submit" className="btn btn-secondary">
+              Submit
+            </button>
+          </span>
+        </form>
+
+      </div>
     );
   }
 }

@@ -16,7 +16,8 @@ export function fetchAsteroids(startDate) {
 
   return {
     type: FETCH_ASTEROIDS,
-    payload: request
+    payload: request,
+    meta: startDate
   };
 }
 
