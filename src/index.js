@@ -10,7 +10,7 @@ import AsteroidsList from "./components/asteroids-list";
 //import AsteroidDetails from "./components/asteroid-details";
 import SearchBar from "./components/asteroids-search";
 
-//import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap/dist/css/bootstrap.css'
 
 const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
 

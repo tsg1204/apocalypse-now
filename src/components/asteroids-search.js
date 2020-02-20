@@ -3,18 +3,24 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link } from "react-router-dom";
-import { fetchAsteroids } from "../actions";
+import { fetchAsteroids, fetchDailyImage} from "../actions";
 
 
 class SearchBar extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { startDate: '' };
+    this.state = { startDate: ''};
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.onImageClick = this.onImageClick.bind(this);
   }
+
+  componentDidMount() {
+    fetchDailyImage();
+  }
+
 
   onInputChange(event) {
     this.setState({ startDate: event.target.value });
@@ -28,25 +34,39 @@ class SearchBar extends Component {
     this.setState({ startDate: '' });
   }
 
+  onImageClick(event){
+    event.preventDefault();
+
+  }
+
   render() {
 
     return (
-      <form onSubmit={this.onFormSubmit} className="input-group">
-        <input
-          placeholder="Enter your date ex. YYYY-MM-DD"
-          className="form-control"
-          value={this.state.startDate}
-          onChange={this.onInputChange}
-        />
-        <span className="input-group-btn">
-          <button type="submit" className="btn btn-secondary">
-            Submit
-          </button>
-        </span>
-      </form>
+      <div>
+        <form onSubmit={this.onFormSubmit} className="input-group">
+          <input
+            placeholder="Enter your date Ex. YYYY-MM-DD"
+            className="form-control"
+            value={this.state.startDate}
+            onChange={this.onInputChange}
+            />
+            <span className="input-group-btn">
+            <button type="submit" className="btn btn-secondary">
+                Submit
+              </button>
+              </span>
+          </form>
+          <div onClick={this.onImageClick}>img</div>
+          <img src={this.props.url} onClick={this.onImageClick}></img>
+      </div>
+
     );
   }
 }
+
+// function mapStateToProps(state, ownProps){
+//   {}
+// }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ fetchAsteroids }, dispatch);
