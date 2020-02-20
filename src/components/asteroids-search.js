@@ -22,7 +22,7 @@ class SearchBar extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    console.log(this.state)
+    //console.log(this.state)
     // We need to go and fetch asteroid data
     this.props.fetchAsteroids(this.state.startDate);
     this.setState({ startDate: '' });
