@@ -5,10 +5,10 @@ import { createStore, applyMiddleware } from "redux";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import promise from "redux-promise";
 
-import reducers from "./index";
-import AsteroidList from "./components/asteroids-list";
-import AsteroidDetails from "./components/asteroid-details";
-import AsteroidsSearch from "./components/asteroids-search";
+import reducers from "./reducers/index";
+import AsteroidsList from "./components/asteroids-list";
+//import AsteroidDetails from "./components/asteroid-details";
+import SearchBar from "./components/asteroids-search";
 
 //import 'bootstrap/dist/css/bootstrap.css'
 
@@ -20,8 +20,8 @@ ReactDOM.render(
       <div>
         <Switch>
           <Route path="/asteroids" component={AsteroidsList}/>
-          <Route path="/asteroids/:id" component={AsteroidDetails} />
-          <Route path="/" component={AsteroidsSearch}/>
+          {/*<Route path="/asteroids/:id" component={AsteroidDetails} />*/}
+          <Route  exact path="/" component={SearchBar}/>
         </Switch>
       </div>
     </BrowserRouter>
