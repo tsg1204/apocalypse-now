@@ -4,20 +4,18 @@ import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
 
 class AsteroidDetails extends Component {
-	componentDidMount() {
-		const { id } = this.props.match.params;
-		//???
-	}
+
 
 	render() {
+		return (
+			<div>Asteroid Details</div>
+		)
 
 	}
 
 }
 
-function mapStateToProps(state, ownProps) {
-  return { post: state.asteroids[ownProps.match.params.id] };
-}
 
 
-export default connect(mapStateToProps)(AsteroidDetails);
+
+export default AsteroidDetails //connect(mapStateToProps)(AsteroidDetails);

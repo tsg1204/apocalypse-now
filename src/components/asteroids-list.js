@@ -2,37 +2,65 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
+import _ from "lodash";
 import { fetchAsteroids } from "../actions";
 
 
 class AsteroidsList extends Component {
-  componentDidMount() {
-    //const { id } = this.props.match.params;
-    //console.log(this.props.match)
-    //this.props.fetchAsteroids();
-  }
+	constructor() {
+		super()
 
+
+	}
+	
+
+	renderList() {
+		console.log('from renderList')
+		 return _.map(this.props.asteroids, ast => {
+	      return (
+	      		<tr key={ast.id}>
+	        	<td key={ast.id}>	            
+					<Link to={`/asteroids/${ast.id}`}>
+						{ast.name}	
+					</Link>
+				</td>
+				<td>
+					{ast.is_potentially_hazardous_asteroid ? '      Yes' : '     No'}
+				</td>
+				</tr>
+	      );
+	    });
+	}
 
   render() {
-
-    const { asteroids } = this.props;
-    console.log(asteroids)
-    //if (!post) {
-      //return <div>Loading...</div>;
-    //}
-
     return (
-    	<div>Asteroids List</div>
+    	<div><h4>Asteroids List</h4>
+	        {/*<ul className="list-group">
+	        	<li className="list-group-item">Name       | Is potentially hazardous asteroid?</li>
+	          {this.renderList()}
+	        </ul>*/}
+	        <table >
+	        	<tbody>
+	        		<tr>
+	        			<td>Name</td>
+	        			<td>Is potentially hazardous asteroid?</td>
+	        		</tr>
+	        		{this.renderList()}
+	        	</tbody>
+	        </table>
+    	</div>
+
     );
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  //return { post: state.posts[ownProps.match.params.id] };
+function mapStateToProps(  asteroids ) {
+  return { asteroids };
 }
 
-function mapDispatchToProps(dispatch) {
-  //return bindActionCreators({fetchPost, deletePost}, dispatch);
-}
+// function mapDispatchToProps(dispatch) {
+//   return bindActionCreators({fetchPost, deletePost}, dispatch);
+// }
 
-export default AsteroidsList; //connect(mapStateToProps, mapDispatchToProps)(PostsShow);
+export default connect(mapStateToProps)(AsteroidsList); //connect(mapStateToProps, mapDispatchToProps)(PostsShow);
+

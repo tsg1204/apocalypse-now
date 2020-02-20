@@ -4,13 +4,15 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link } from "react-router-dom";
 import { fetchAsteroids, fetchDailyImage} from "../actions";
+import AsteroidsList from "./asteroids-list";
+
 
 
 class HomePage extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { startDate: ''};
+    this.state = { startDate: '2019-12-12' };
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -27,9 +29,10 @@ class HomePage extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    console.log(this.state)
+    //console.log(this.state)
     // We need to go and fetch asteroid data
     this.props.fetchAsteroids(this.state.startDate);
+    this.props.history.push('/asteroids');
     this.setState({ startDate: '' });
   }
 
@@ -63,7 +66,6 @@ class HomePage extends Component {
             </div>
           </div>
       </div>
-
     );
   }
 }
