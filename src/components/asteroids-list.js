@@ -5,6 +5,7 @@ import { bindActionCreators } from "redux";
 import _ from "lodash";
 import { fetchAsteroids } from "../actions";
 
+
 class AsteroidsList extends Component {
 	constructor() {
 		super()
@@ -32,7 +33,6 @@ class AsteroidsList extends Component {
 	}
 
   render() {
-
     return (
     	<div><h4>Asteroids List</h4>
 	        {/*<ul className="list-group">
@@ -63,3 +63,4 @@ function mapStateToProps(  asteroids ) {
 // }
 
 export default connect(mapStateToProps)(AsteroidsList); //connect(mapStateToProps, mapDispatchToProps)(PostsShow);
+

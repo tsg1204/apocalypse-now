@@ -3,11 +3,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link } from "react-router-dom";
-import { fetchAsteroids } from "../actions";
+import { fetchAsteroids, fetchDailyImage} from "../actions";
 import AsteroidsList from "./asteroids-list";
 
 
-class SearchBar extends Component {
+
+class HomePage extends Component {
   constructor(props) {
     super(props);
 
@@ -15,6 +16,11 @@ class SearchBar extends Component {
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+
+  }
+
+  componentDidMount() {
+    this.props.fetchDailyImage();
   }
 
   onInputChange(event) {
@@ -30,68 +36,49 @@ class SearchBar extends Component {
     this.setState({ startDate: '' });
   }
 
+
   render() {
+    const { image } = this.props;
+
+    if (!image) {
+      return <div>Loading...</div>;
+    }
 
     return (
       <div>
         <form onSubmit={this.onFormSubmit} className="input-group">
           <input
-            placeholder="Enter your date ex. YYYY-MM-DD"
+            placeholder="Enter your date Ex. YYYY-MM-DD"
             className="form-control"
             value={this.state.startDate}
             onChange={this.onInputChange}
-          />
-          <span className="input-group-btn">
+            />
+            <span className="input-group-btn">
             <button type="submit" className="btn btn-secondary">
-              Submit
-            </button>
-          </span>
-        </form>
-
+                Submit
+              </button>
+              </span>
+          </form>
+          <div className="container">
+            <div className="top-right">Today's Nasa Image: {this.props.image.explanation}
+              <img src={this.props.image.url}>
+              </img>
+            </div>
+          </div>
       </div>
     );
   }
 }
 
+function mapStateToProps ({image}){
+  return {image}
+};
+
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchAsteroids }, dispatch);
+  return bindActionCreators({ fetchAsteroids, fetchDailyImage }, dispatch);
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
-)(SearchBar);
-
-
-
-
-
-
-
-// class AsteroidsSearch extends Component {
-//   componentDidMount() {
-//     this.props.fetchAsteroids();
-//   }
-
-//   render() {
-//     return _.map(this.props.asteroids, asteroid => {
-//       return (
-//         <li className="list-group-item" key={asteroids.id}>
-//           <Link to={`/asteroids/${asteroids.id}`}>
-//             {asteroids.name}
-//           </Link>
-//         </li>
-//       );
-//     });
-//   }
-// }
-
-// function mapStateToProps(state) {
-//   return { asteroids: state.asteroids};
-// }
-
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({ fetchAsteroids }, dispatch);
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(AsteroidsSearch);
+)(HomePage);
