@@ -21,7 +21,7 @@ export function fetchAsteroids(startDate) {
 }
 
 export function fetchDailyImage() {
-  debugger;
+
   const request = axios.get(`${ROOT_URL_IMAGE}${API_KEY}`);
 
   return {

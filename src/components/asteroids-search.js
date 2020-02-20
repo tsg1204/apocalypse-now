@@ -18,9 +18,9 @@ class SearchBar extends Component {
   }
 
   componentDidMount() {
-    fetchDailyImage();
+    this.props.fetchDailyImage();
+    console.log(this.props.fetchDailyImage.url);
   }
-
 
   onInputChange(event) {
     this.setState({ startDate: event.target.value });
@@ -36,6 +36,7 @@ class SearchBar extends Component {
 
   onImageClick(event){
     event.preventDefault();
+
 
   }
 
@@ -56,24 +57,23 @@ class SearchBar extends Component {
               </button>
               </span>
           </form>
-          <div onClick={this.onImageClick}>img</div>
-          <img src={this.props.url} onClick={this.onImageClick}></img>
+          <img src={this.props.image.url} onClick={this.onImageClick}></img>
       </div>
 
     );
   }
 }
 
-// function mapStateToProps(state, ownProps){
-//   {}
-// }
+function mapStateToProps (image){
+  return {image}
+};
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ fetchAsteroids }, dispatch);
+  return bindActionCreators({ fetchAsteroids, fetchDailyImage }, dispatch);
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(SearchBar);
 
