@@ -68,7 +68,7 @@ class HomePage extends Component {
   }
 }
 
-function mapStateToProps (image){
+function mapStateToProps ({image}){
   return {image}
 };
 
