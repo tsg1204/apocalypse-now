@@ -58,6 +58,7 @@ class AsteroidDetails extends Component {
 				</div>
 			)
 		}else if(this.props.asteroid.is_potentially_hazardous_asteroid === true){
+
 		return (
 			<div style={{color: '#C0C0C0'}}>
 				<h1>Today may be the day!</h1>
