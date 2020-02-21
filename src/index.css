@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.survival {
+  background-color: lightgreen;
+}
+
+.dead {
+  background-color: salmon;
+}
