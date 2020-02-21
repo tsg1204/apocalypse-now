@@ -57,7 +57,7 @@ class AsteroidDetails extends Component {
 					<Link to='/asteroids'>Back to Asteroid List</Link>
 				</div>
 			)
-		}else if(this.props.asteroid.is_potentially_hazardous_asteroid === true){
+		}else {
 		// console.log(this.props.asteroid.name)
 		return (
 			<div style={{color: '#C0C0C0'}}>
@@ -78,9 +78,11 @@ function mapStateToProps(state, props ) {
 	console.log(state)
 	// console.log(props.match.params.id)
 	const selectedId = props.match.params.id
+
 	// console.log(selectedId)
 	const selectedAsteroid = state.asteroids.find(({id}) => id == selectedId);
 	// console.log(selectedAsteroid)
+
   return {
 		asteroid: selectedAsteroid
 	}
