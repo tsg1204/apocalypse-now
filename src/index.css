@@ -24,3 +24,7 @@ code {
   top: 8px;
   right: 16px;
 }
+
+#maindiv {
+  background-image: url(https://images-assets.nasa.gov/image/PIA09653/PIA09653~orig.jpg);
+}

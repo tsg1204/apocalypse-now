@@ -29,9 +29,9 @@ class AsteroidsList extends Component {
 			const formatedValue = Math.round(miles)
 			return (
 				<tr key={ast.id}>
-				<td key={ast.id} style={{color: '#C0C0C0'}}>	            
+				<td key={ast.id} style={{color: '#C0C0C0'}}>
 					<Link to={`/asteroids/${ast.id}`}>
-						{ast.name}	
+						{ast.name}
 					</Link>
 				</td>
 				<td style={{color: '#C0C0C0', paddingLeft: '60px'}}>
@@ -47,7 +47,7 @@ class AsteroidsList extends Component {
 
   render() {
     return (
-    	<div>
+    	<div style={{backgroundImage: 'url(https://images-assets.nasa.gov/image/PIA09653/PIA09653~small.jpg)' }}>
 	        <table style={{margin: 'auto'}}>
 	        	<tbody>
 	        		<tr>
@@ -67,5 +67,4 @@ function mapStateToProps( { asteroids } ) {
   return { asteroids };
 }
 
-export default connect(mapStateToProps)(AsteroidsList); 
-
+export default connect(mapStateToProps)(AsteroidsList);
