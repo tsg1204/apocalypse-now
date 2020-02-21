@@ -59,6 +59,13 @@ class AsteroidsList extends Component {
 	        		{this.renderList()}
 	        	</tbody>
 	        </table>
+					<br/>
+					<br/>
+					<Link style={{marginLeft: '10px', color: '#C0C0C0', fontSize:"20px"}} to='/'>Back to Home Page</Link>
+					<br/>
+					<br/>
+					<br/>
+					<br/>
     	</div>
     );
   }
@@ -70,4 +77,3 @@ function mapStateToProps( { asteroids } ) {
 
 
 export default connect(mapStateToProps)(AsteroidsList);
-
