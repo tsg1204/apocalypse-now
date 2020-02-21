@@ -26,7 +26,7 @@ class AsteroidDetails extends Component {
 							height={item.height}
 							src={item.img}
 						/>
-						<p>{item.name}</p>
+						<p >{item.name}</p>
 					</td>
 			)
 		})
@@ -34,6 +34,7 @@ class AsteroidDetails extends Component {
 }
 
 	render(){
+		console.log(this.props.asteroid)
 		if(this.props.asteroid.is_potentially_hazardous_asteroid === false){
 			return (
 				<div style={{color: '#C0C0C0', backgroundImage: 'url(https://www.nasa.gov/images/content/523679main_pia13904-43_946-710.jpg)'}}>
@@ -73,18 +74,17 @@ class AsteroidDetails extends Component {
 	}
 }
 
-
-function mapStateToProps(state, props) {
-	// console.log(state)
+function mapStateToProps(state, props ) {
+	console.log(state)
 	// console.log(props.match.params.id)
-	const seclectedId = props.match.params.id
-	const selectedAsteroid = _.find(state, { id: seclectedId });
-
+	const selectedId = props.match.params.id
+	// console.log(selectedId)
+	const selectedAsteroid = state.asteroids.find(({id}) => id == selectedId);
+	// console.log(selectedAsteroid)
   return {
 		asteroid: selectedAsteroid
 	}
 }
-
 
 
 export default connect(mapStateToProps)(AsteroidDetails);
