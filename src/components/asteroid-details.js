@@ -36,7 +36,7 @@ class AsteroidDetails extends Component {
 
 		if(this.props.asteroid.is_potentially_hazardous_asteroid === false){
 			return (
-				<div style={{color: '#C0C0C0', backgroundImage: 'url(https://www.nasa.gov/images/content/523679main_pia13904-43_946-710.jpg)'}}>
+				<div style={{color: '#C0C0C0', backgroundImage: 'url(https://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/iss061e112503.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: '100%'}}>
 					<h2>Congrats you are not going to die from an asteroid today!</h2>
 					<h3>Details about this asteroid:</h3>
 					<h4>Name: {this.props.asteroid.name}</h4>
