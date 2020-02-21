@@ -3,8 +3,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link } from "react-router-dom";
+import moment from 'moment'
+import Calendar from 'ciqu-react-calendar'
 import { fetchAsteroids, fetchDailyImage} from "../actions";
 import AsteroidsList from "./asteroids-list";
+import './styles.css';
 
 
 
@@ -12,10 +15,14 @@ class HomePage extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { startDate: '2019-12-12' };
+    this.state = { startDate: '' };
 
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+
+    this.onChange = this.onChange.bind(this);
+    this.onOpenChange = this.onOpenChange.bind(this);
+    this.disabledDate = this.disabledDate.bind(this);
 
   }
 
@@ -36,6 +43,23 @@ class HomePage extends Component {
     this.setState({ startDate: '' });
   }
 
+  onChange (value, inputValue) {
+    //console.log(value.format('YYYY-MM-DD'))
+    let dateToPass = value.format('YYYY-MM-DD')
+    this.setState({ startDate: dateToPass })
+    console.log('date to pass: ', dateToPass)
+    this.props.fetchAsteroids(dateToPass);
+    this.props.history.push('/asteroids');
+  }
+
+  onOpenChange (status){
+    console.log('open status: ' + status)
+  }
+
+  disabledDate (currentDate, inputValue) {
+    return false
+  }
+
 
   render() {
     const { image } = this.props;
@@ -45,21 +69,22 @@ class HomePage extends Component {
     }
 
     return (
+
       <div>
-        <form onSubmit={this.onFormSubmit} className="input-group">
-          <input
-            placeholder="Enter your date Ex. YYYY-MM-DD"
-            className="form-control"
-            value={this.state.startDate}
-            onChange={this.onInputChange}
+        <div className="container" id="calCont">
+            <Calendar
+                onChange={this.onChange}
+                value={this.state.startDate}
+                allowClear={true}
+                disabled={false}
+                placeholder={'please input date'}
+                format={'YYYY-MM-DD'}
+                onOpenChange={this.onOpenChange}
+                disabledDate={this.disabledDate}
             />
-            <span className="input-group-btn">
-            <button type="submit" className="btn btn-secondary">
-                Submit
-              </button>
-              </span>
-          </form>
-          <br></br>
+          </div>
+          <br />
+          <br />
           <div className="container">
             <div className="top-right" style={{color: '#C0C0C0', textAlign:"justify"}} >Today's Nasa Image: {this.props.image.explanation}
             </div>
