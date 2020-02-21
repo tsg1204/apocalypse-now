@@ -55,7 +55,7 @@ class AsteroidDetails extends Component {
 							<tr>{this.renderComparisonImg()}</tr>
 						</tbody>
 					</table>
-					<Link style={{fontSize:"20px"}} to='/asteroids'>Back to Asteroid List</Link>
+					<Link style={{fontSize:"20px", color: '#C0C0C0'}} to='/asteroids'>Back to Asteroid List</Link>
 				</div>
 			)
 		}else if(this.props.asteroid.is_potentially_hazardous_asteroid === true){
