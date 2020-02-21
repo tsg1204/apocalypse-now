@@ -30,7 +30,6 @@ class AsteroidDetails extends Component {
 					</td>
 			)
 		})
-
 }
 
 	render(){
@@ -77,7 +76,6 @@ class AsteroidDetails extends Component {
 function mapStateToProps(state, props ) {
 
 	const selectedId = props.match.params.id
-
 	const selectedAsteroid = state.asteroids.find(({id}) => id == selectedId);
 
   return {
