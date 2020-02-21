@@ -60,17 +60,15 @@ class HomePage extends Component {
               </span>
           </form>
           <br></br>
-          <div className="container">
-            <div className="top-right" style={{color: '#C0C0C0', textAlign:"justify"}} >Today's Nasa Image: {this.props.image.explanation}
-            </div>
-            <br/>
-                <div className="text-center">
-                  <img src={this.props.image.url}>
-                  </img>
+          <div className="container" style={{position: 'relative'}}>
+            <div className="text-center" >
+            <div style={{marginRight: '30px', marginLeft: '20px', position: 'absolute', color: '#C0C0C0', top: '8px', textAlign:"justify"}}>Today's Nasa Image: {this.props.image.explanation} </div>
+              <img src={this.props.image.url} style={{width: '100%'}}>
+              </img>
               </div>
-
+            </div>
           </div>
-      </div>
+
     );
   }
 }
