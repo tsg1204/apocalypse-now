@@ -73,6 +73,7 @@ class AsteroidDetails extends Component {
 	}
 }
 
+
 function mapStateToProps(state, props) {
 	// console.log(state)
 	// console.log(props.match.params.id)
@@ -83,6 +84,7 @@ function mapStateToProps(state, props) {
 		asteroid: selectedAsteroid
 	}
 }
+
 
 
 export default connect(mapStateToProps)(AsteroidDetails);
