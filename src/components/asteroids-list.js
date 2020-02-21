@@ -3,64 +3,69 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import _ from "lodash";
-import { fetchAsteroids } from "../actions";
-
 
 class AsteroidsList extends Component {
-	constructor() {
-		super()
-
-
-	}
-	
 
 	renderList() {
-		console.log('from renderList')
-		 return _.map(this.props.asteroids, ast => {
-	      return (
-	      		<tr key={ast.id}>
-	        	<td key={ast.id}>	            
+		//sort data by closest missed distance
+		const compareFunc = (a, b) => {
+			const milesA = Math.round(a.close_approach_data[0].miss_distance.miles);
+			const milesB = Math.round(b.close_approach_data[0].miss_distance.miles);
+
+			let comparison = 0;
+			if (milesA > milesB) {
+				comparison = 1;
+			} else if (milesA < milesB) {
+				comparison = -1;
+			}
+			return comparison;
+		}
+
+		this.props.asteroids.sort(compareFunc);
+
+		return _.map(this.props.asteroids, ast => {
+			if (ast.is_potentially_hazardous_asteroid) console.log('BOOM!!!')
+			const miles = ast.close_approach_data[0].miss_distance.miles
+			const formatedValue = Math.round(miles)
+			return (
+				<tr key={ast.id}>
+				<td key={ast.id} style={{color: '#C0C0C0'}}>	            
 					<Link to={`/asteroids/${ast.id}`}>
 						{ast.name}	
 					</Link>
 				</td>
-				<td>
-					{ast.is_potentially_hazardous_asteroid ? '      Yes' : '     No'}
+				<td style={{color: '#C0C0C0', paddingLeft: '60px'}}>
+					{ast.is_potentially_hazardous_asteroid ? 'Yes' : 'No'}
 				</td>
-				</tr>
-	      );
+				<td style={{color: '#C0C0C0', paddingLeft: '60px'}}>
+					{formatedValue.toLocaleString()} mi
+				</td>
+			</tr>
+			);
 	    });
 	}
 
   render() {
     return (
-    	<div><h4>Asteroids List</h4>
-	        {/*<ul className="list-group">
-	        	<li className="list-group-item">Name       | Is potentially hazardous asteroid?</li>
-	          {this.renderList()}
-	        </ul>*/}
-	        <table >
+    	<div>
+	        <table style={{margin: 'auto'}}>
 	        	<tbody>
 	        		<tr>
-	        			<td>Name</td>
-	        			<td>Is potentially hazardous asteroid?</td>
+	        			<td style={{color: '#C0C0C0'}}>Asteroid Name</td>
+	        			<td style={{color: '#C0C0C0', paddingLeft: '60px'}}>Is potentially hazardous asteroid?</td>
+	        			<td style={{color: '#C0C0C0', paddingLeft: '60px'}}>Missed by</td>
 	        		</tr>
 	        		{this.renderList()}
 	        	</tbody>
 	        </table>
     	</div>
-
     );
   }
 }
 
-function mapStateToProps(  asteroids ) {
+function mapStateToProps( { asteroids } ) {
   return { asteroids };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return bindActionCreators({fetchPost, deletePost}, dispatch);
-// }
-
-export default connect(mapStateToProps)(AsteroidsList); //connect(mapStateToProps, mapDispatchToProps)(PostsShow);
+export default connect(mapStateToProps)(AsteroidsList); 
 
