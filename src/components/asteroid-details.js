@@ -34,7 +34,7 @@ class AsteroidDetails extends Component {
 }
 
 	render(){
-		console.log(this.props.asteroid)
+
 		if(this.props.asteroid.is_potentially_hazardous_asteroid === false){
 			return (
 				<div style={{color: '#C0C0C0', backgroundImage: 'url(https://www.nasa.gov/images/content/523679main_pia13904-43_946-710.jpg)'}}>
@@ -57,8 +57,8 @@ class AsteroidDetails extends Component {
 					<Link to='/asteroids'>Back to Asteroid List</Link>
 				</div>
 			)
-		}else {
-		// console.log(this.props.asteroid.name)
+		}else if(this.props.asteroid.is_potentially_hazardous_asteroid === true){
+
 		return (
 			<div style={{color: '#C0C0C0'}}>
 				<h1>Today may be the day!</h1>
@@ -75,13 +75,10 @@ class AsteroidDetails extends Component {
 }
 
 function mapStateToProps(state, props ) {
-	console.log(state)
-	// console.log(props.match.params.id)
+
 	const selectedId = props.match.params.id
 
-	// console.log(selectedId)
 	const selectedAsteroid = state.asteroids.find(({id}) => id == selectedId);
-	// console.log(selectedAsteroid)
 
   return {
 		asteroid: selectedAsteroid
