@@ -7,6 +7,7 @@ import _ from "lodash";
 class AsteroidsList extends Component {
 
 	renderList() {
+
 		//sort data by closest missed distance
 		const compareFunc = (a, b) => {
 			const milesA = Math.round(a.close_approach_data[0].miss_distance.miles);
@@ -67,4 +68,6 @@ function mapStateToProps( { asteroids } ) {
   return { asteroids };
 }
 
+
 export default connect(mapStateToProps)(AsteroidsList);
+
