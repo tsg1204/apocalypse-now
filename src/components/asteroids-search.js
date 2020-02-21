@@ -71,6 +71,7 @@ class HomePage extends Component {
     return (
 
       <div>
+    {/* calendar added*/}
         <div className="container" id="calCont">
             <Calendar
                 onChange={this.onChange}
@@ -95,6 +96,7 @@ class HomePage extends Component {
               </div>
 
           </div>
+      }
       </div>
     );
   }
