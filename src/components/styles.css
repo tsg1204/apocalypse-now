@@ -8,3 +8,11 @@ div.calendar.opened {
 	margin-left: 38%;
 }
 
+.trade-winds{
+  font-family: 'Trade Winds';
+  font-size: 60px;
+}
+
+#root{
+  font-family: 'Tomorrow'
+}

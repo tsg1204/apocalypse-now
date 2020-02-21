@@ -13,19 +13,6 @@ code {
     monospace;
 }
 
-.container {
-  position: relative;
-  text-align: center;
-  color: white;
+.trade-winds{
+  font-family: 'Trade Winds'
 }
-
-.top-right {
-  position: absolute;
-  top: 8px;
-  right: 16px;
-}
-
-#maindiv {
-  background-image: url(https://images-assets.nasa.gov/image/PIA09653/PIA09653~orig.jpg);
-}
-
