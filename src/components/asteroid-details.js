@@ -12,7 +12,7 @@ class AsteroidDetails extends Component {
 				{id: 1, name:'Human', img: 'https://ak8.picdn.net/shutterstock/videos/25015148/thumb/1.jpg', meters: 1.7, height: 30, width: 30},
 				{id: 2, name: 'Big Ben', img: 'https://i.pinimg.com/originals/f0/82/63/f0826326a169916dda48c726a1531a0c.jpg', meters: 96, height: 90, width: 65},
 				{id: 3, name: 'Eiffel Tower', img: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/illustration-of-the-eiffel-tower-on-a-white-background-artpics.jpg', meters: 299.9, height: 120, width: 80},
-				{id: 4, name: 'Empire State Building', img: 'https://thumbs.dreamstime.com/b/empire-state-building-isolated-empire-state-building-isolated-white-background-d-render-147426371.jpg', meters: 381, height: 150, width:90},
+				{id: 4, name: 'Empire State', img: 'https://thumbs.dreamstime.com/b/empire-state-building-isolated-empire-state-building-isolated-white-background-d-render-147426371.jpg', meters: 381, height: 150, width:90},
 				{id: 5, name: 'Burj Khalifa', img: 'https://atlas-content-cdn.pixelsquid.com/stock-images/burj-khalifa-tower-DxyWA22-600.jpg', meters: 829.6, height: 170, width:100}
 		]
 
@@ -20,16 +20,18 @@ class AsteroidDetails extends Component {
 
 		return _.map(sortAsteroidComparisons, item => {
 			return(
-					<td key={item.id} style={{verticalAlign: "bottom"}}>
+					<td key={item.id} style={{verticalAlign: "bottom", width: "100px"}}>
 						<img
 							width={item.width}
 							height={item.height}
 							src={item.img}
 						/>
-						<p >{item.name}</p>
+						<p>{item.name}</p>
+						<p>{item.meters}</p>
 					</td>
 			)
 		})
+
 }
 
 	render(){
@@ -46,14 +48,14 @@ class AsteroidDetails extends Component {
 					<table className="table table-borderless" style={{color: '#C0C0C0'}}>
 						<thead>
 							<tr>
-								<th>Asteroid Comparison</th>
+								<th style={{color: '#FFA500'}}>Asteroid Comparison</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>{this.renderComparisonImg()}</tr>
 						</tbody>
 					</table>
-					<Link to='/asteroids'>Back to Asteroid List</Link>
+					<Link style={{fontSize:"20px"}} to='/asteroids'>Back to Asteroid List</Link>
 				</div>
 			)
 		}else if(this.props.asteroid.is_potentially_hazardous_asteroid === true){
@@ -62,8 +64,11 @@ class AsteroidDetails extends Component {
 			<div style={{color: '#C0C0C0'}}>
 				<h1>Today may be the day!</h1>
 				<h3>We advise you email or text your family by: {this.props.asteroid.close_approach_data[0].close_approach_date_full}</h3>
-				<h3>Below is a handy dandy survival guide for when mass panic breaks out.</h3>
-				<a href="https://www.nytimes.com/2017/09/23/style/how-to-survive-the-apocalypse.html"> Apocalyse Survival Guide</a>
+				<br />
+				<h4>Check out this handy dandy survival guide for when mass panic breaks out.</h4>
+				<a style={{color: '#FF0000', fontSize:"30px"}} href="https://www.nytimes.com/2017/09/23/style/how-to-survive-the-apocalypse.html"> Apocalyse Survival Guide</a>
+				<br />
+				<br />
 				<Link to='/asteroids'>Back to Asteroid List</Link>
 				<img src='https://www.techexplorist.com/wp-content/uploads/2019/07/asteroid-explosion.jpg'/>
 			</div>
@@ -76,6 +81,7 @@ class AsteroidDetails extends Component {
 function mapStateToProps(state, props ) {
 
 	const selectedId = props.match.params.id
+
 	const selectedAsteroid = state.asteroids.find(({id}) => id == selectedId);
 
   return {
@@ -85,4 +91,3 @@ function mapStateToProps(state, props ) {
 
 
 export default connect(mapStateToProps)(AsteroidDetails);
-// AsteroidDetails
