@@ -10,18 +10,16 @@ class AsteroidsList extends Component {
 	constructor() {
 		super()
 
-
 	}
-	
 
 	renderList() {
 		console.log('from renderList')
 		 return _.map(this.props.asteroids, ast => {
 	      return (
 	      		<tr key={ast.id}>
-	        	<td key={ast.id}>	            
+	        	<td key={ast.id}>
 					<Link to={`/asteroids/${ast.id}`}>
-						{ast.name}	
+						{ast.name}
 					</Link>
 				</td>
 				<td>
@@ -54,7 +52,7 @@ class AsteroidsList extends Component {
   }
 }
 
-function mapStateToProps(  asteroids ) {
+function mapStateToProps( {asteroids} ) {
   return { asteroids };
 }
 
@@ -63,4 +61,3 @@ function mapStateToProps(  asteroids ) {
 // }
 
 export default connect(mapStateToProps)(AsteroidsList); //connect(mapStateToProps, mapDispatchToProps)(PostsShow);
-
