@@ -59,13 +59,16 @@ class HomePage extends Component {
               </button>
               </span>
           </form>
+          <br></br>
           <div className="container">
-            <div className="top-right" style={{color: '#C0C0C0'}} >Today's Nasa Image: {this.props.image.explanation}
-              <div className="text-center">
-              <img src={this.props.image.url}>
-              </img>
-              </div>
+            <div className="top-right" style={{color: '#C0C0C0', textAlign:"justify"}} >Today's Nasa Image: {this.props.image.explanation}
             </div>
+            <br/>
+                <div className="text-center">
+                  <img src={this.props.image.url}>
+                  </img>
+              </div>
+
           </div>
       </div>
     );
