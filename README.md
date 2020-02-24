@@ -1,3 +1,7 @@
+Apocalypse Now? project has been created by three students at Project Shift, a software engineering fellowship located in Downtown Durham. The work in this repository was created for their Hackathon Projects that came from student pitches. The students created this project in 48 hours and used two different NASA API calls. This front-end project used a React/Redux framework. 
+If you have any questions about this project or the program in general, visit projectshift.io or email hello@projectshift.io.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
